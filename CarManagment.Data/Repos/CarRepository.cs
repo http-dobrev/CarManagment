@@ -36,6 +36,7 @@ namespace CarManagment.Data.Repos
 
             conn.Open();
             cmd.ExecuteNonQuery();
+            conn.Close();
         }
 
         // READ All Cars
@@ -65,6 +66,9 @@ namespace CarManagment.Data.Repos
                 cars.Add(CarDataMapper.ToEntity(dto));
             }
 
+            rdr.Close();
+            conn.Close();
+           
             return cars;
         }
 
@@ -92,6 +96,9 @@ namespace CarManagment.Data.Repos
                 Price = rdr.IsDBNull(4) ? null : rdr.GetDecimal(4)
             };
 
+            rdr.Close();
+            conn.Close();
+
             return CarDataMapper.ToEntity(dto);
         }
 
@@ -115,6 +122,7 @@ namespace CarManagment.Data.Repos
 
             conn.Open();
             cmd.ExecuteNonQuery();
+            conn.Close();
         }
 
         // Delete Car
@@ -127,6 +135,7 @@ namespace CarManagment.Data.Repos
 
             conn.Open();
             cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }
